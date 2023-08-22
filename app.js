@@ -274,7 +274,7 @@ function display_product(e){
     cc.style.alignItems = 'center';
     // cc.style.border = '1px solid black';
     const product_container = document.createElement('div');
-    product_container.style.width = '70%';
+    product_container.style.width = '60%';
     product_container.style.height = '95%';
     product_container.style.display = 'flex';
     product_container.style.flexDirection = 'column';
@@ -313,6 +313,7 @@ function display_product(e){
     img.style.height = '90%';
     img.style.objectFit = 'contain';
     // img.style.border = '1px solid black';
+    img.style.marginLeft = '50px';
     img_container.append(img);
     // console.log(e.target.parentElement.parentElement.parentElement.parentElement);
 
@@ -333,7 +334,7 @@ function display_product(e){
     rate_container.textContent = rating_rate +'*';
     rate_container.style.fontSize = '30px';
 
-    rating_container.style.marginLeft = '-70px';
+    rating_container.style.marginLeft = '-80px';
     rating_container.style.marginTop = '10px';
 
 
