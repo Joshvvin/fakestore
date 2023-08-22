@@ -70,7 +70,8 @@ fetch('https://fakestoreapi.com/products/')
             // product_li.style.border = '1px solid black';
             // product
             product_li.style.backgroundColor = 'white';
-            product_li.style.borderRadius = '15px';
+            product_li.style.borderRadius = '20px';
+            // product_li.style.boxShadow = '5px 5px 10px 1px';
             product_li.style.listStyleType = 'none';  
             product_li.style.display = 'flex';
             // product_li.style.minHeight = '200px';
@@ -94,24 +95,29 @@ fetch('https://fakestoreapi.com/products/')
             product_li_items.style.display = 'flex';
             // product_li_items.style.border = '1px solid black';
             product_li_items.style.flexDirection = 'column'; 
-            product_li_items.style.justifyContent = 'space-between';
-            // product_li_items.style.rowGap = '20px';     
+            // product_li_items.style.justifyContent = 'space-between';
+            product_li_items.style.rowGap = '30px';     
             const image_li = document.createElement('div');
-            image_li.style.height = '55%';
+            image_li.style.height = '60%';
             image_li.style.width = '100%';
             image_li.style.listStyleType = 'none';  
             // image_li.style.border = '1px solid black';
+            image_li.style.display = 'flex';
+            image_li.style.justifyContent = 'center';
+            image_li.style.alignItems = 'center';
+
             image_li.style.overflow = 'hidden';
             const image = document.createElement('img');
             image.src =`${product.image}`;
-            image.style.width = '100%';
-            image.style.height = '100%';
+            image.style.width = '85%';
+            image.style.height = '85%';
             image.style.objectFit = 'contain';
             const title = document.createElement('div');
             title.style.width = '100%';
             title.style.height = '15%';
             title.textContent = `${product.title}`;
-            title.style.fontSize = '18px';
+            title.style.fontSize = '20px';
+            // title.style.justifySelf = 'start';
             // title.style.textDecoration = 'none';
 
             // title.style.border = '1px solid black';
@@ -122,16 +128,26 @@ fetch('https://fakestoreapi.com/products/')
             // desc.style.fontSize = '10px';
             // pr_container.style.border = '1px solid black';
             pr_container.style.display = 'flex';
-            pr_container.style.justifyContent = 'space-between';
+            pr_container.style.justifyContent = 'center';
             pr_container.style.height = '6%';
             pr_container.style.width = '100%';
-            // pr_container.style.border = '1px solid black';
+            pr_container.style.columnGap = '5px';
+
+            const dollar = document.createElement('div');
+            dollar.textContent = '$';
+            dollar.style.width = '28%';
+            dollar.style.height = '70%';
+            dollar.style.fontSize = '20px';
+            dollar.style.textAlign = 'end';
+            dollar.style.alignSelf = 'end';
+            // dollar.style.border = '1px solid black';
             const price = document.createElement('div');
-            price.textContent = `$ ${product.price}`;
-            price.style.width = '100%';
+            price.textContent = `${product.price}`;
+            price.style.width = '50%';
             price.style.height = '100%';
-            price.style.fontSize = '25px';
-            price.style.textAlign = 'center';
+            price.style.fontSize = '30px';
+            // price.style.textAlign = 'center';
+            // price.style.border = '1px solid black';
             // price.style.textDecoration = 'none';
             // const rating = document.createElement('div');
             // rating.textContent = `${product.rating}`;
@@ -139,7 +155,9 @@ fetch('https://fakestoreapi.com/products/')
             // rating.style.height = '100%';
             image_li.append(image);
             product_li_items.append(image_li);
+            pr_container.append(dollar);
             pr_container.append(price);
+
             // pr_container.append(rating);
             product_li_items.append(pr_container);
             product_li_items.append(title);
@@ -156,9 +174,17 @@ const categories_ul = document.querySelector('.category-container');
 // console.log(categories_ul);
 function displayproducts(e){
     const product_list = document.querySelector('.product-list');
+    product_list.style.display = 'flex';
     const content = document.querySelector('content');
     content.style.height = '150vh';
     // console.log(content_list);
+    // if(content.children.length == 2){
+        const rmelement = content.children[0].lastElementChild;
+        // console.log(rmelement);
+        if(rmelement.getAttribute('class') == 'product_container'){
+            rmelement.remove();
+        }
+    // }
     for(const product of product_list.children){
         product.style.display = 'flex';
         const pr_class = product.getAttribute('class');
@@ -183,7 +209,19 @@ function gohome(e){
     const content = document.querySelector('content');
     content.style.height = '300vh';
     const product_list = document.querySelector('.product-list');
-    console.log(product_list);
+    // console.log(product_list);
+    // console.log(e.target.parentElement.parentElement.nextSiblingElement);
+    // console.log(content.children[0]);
+    console.log(content.children);
+    // if(content.children.length == 2){
+        const rmelement = content.children[0].lastElementChild;
+        // console.log(rmelement);
+        if(rmelement.getAttribute('class') == 'product_container'){
+            rmelement.remove();
+        }
+    // }
+    // content.childrend[0].firstElementChild.remove();
+    product_list.style.display = 'flex';
     product_list.style.justifyContent = 'space-evenly';
     product_list.style.alignItems = 'space-evenly';
     for(const product of product_list.children){
@@ -207,11 +245,27 @@ function display_product(e){
     const imagesrc = element.getAttribute('data-image');
     const content = document.querySelector('content');
     content.style.height = '100vh';
-    const plist = e.target.parentElement.parentElement.parentElement.parentElement.parentElement;
+    let plist = e.target.parentElement.parentElement.parentElement.parentElement.parentElement;
     // for(const product of plist){
     //     product.style.display = 'none';
     // }
-    // console.log(plist);
+    // console.log(e.target.parentElement.parentElement.parentElement.parentElement.parentElement);
+    // if(e.target.getAttribute('class').slice(-3) == '-li'){
+    //     plist = e.target;
+    // }
+    // else if(e.target.parentElement.getAttribute('class').slice(-3) == '-li'){
+    //     plist = e.target.parentElement;
+    // }
+    // else if(e.target.parentElement.parentElement.getAttribute('class').slice(-3) == '-li'){
+    //     plist = e.target.parentElement.parentElement;
+    // }
+    // else if(e.target.parentElement.parentElement.parentElement.getAttribute('class').slice(-3) == '-li'){
+    //     plist = e.target.parentElement.parentElement.parentElement;
+    // }
+    // else if(e.target.parentElement.parentElement.parentElement.parentElement.getAttribute('class').slice(-3) == '-li'){
+    //     plist = e.target.parentElement.parentElement.parentElement.parentElement;
+    // }
+    console.log(e.target, e.target.parentElement, e.target.parentElement.parentElement, e.target.parentElement.parentElement.parentElement, e.target.parentElement.parentElement.parentElement.parentElement, e.target.parentElement.parentElement.parentElement.parentElement.parentElement);
     plist.style.display = 'none';
     // cc.style.display = flex;
     cc.style.justifyContent = 'center';
@@ -224,11 +278,11 @@ function display_product(e){
     product_container.style.flexDirection = 'column';
     product_container.style.backgroundColor = 'white';
     product_container.style.borderRadius = '20px';
-    // product_container.style.border = 
+    product_container.setAttribute('class', 'product_container'); 
     product_container.style.justifyContent = 'space-between';
     product_container.style.alignItems = 'space-between';
     // product_container.style.border = '1px solid black';
-    console.log(product_container);
+    // console.log(product_container);
     // const plist = document.querySelector('.product-list');
 
     const i_container = document.createElement('div');
@@ -256,7 +310,7 @@ function display_product(e){
     img.style.objectFit = 'contain';
 
     img_container.append(img);
-    console.log(e.target.parentElement.parentElement.parentElement.parentElement);
+    // console.log(e.target.parentElement.parentElement.parentElement.parentElement);
 
     const rating_container = document.createElement('div');
     rating_container.style.width = '5%';
@@ -301,7 +355,7 @@ function display_product(e){
     details_container.style.width = '100%';
     details_container.style.height = '40%';
     details_container.style.display = 'flex';
-    // details_container.style.border = '1px solid black';
+    details_container.style.border = '1px solid black';
     details_container.style.flexDirection = 'column';
     details_container.style.justifyContent = 'space-between';
     details_container.style.alignItems = 'center';

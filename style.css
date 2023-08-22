@@ -12,6 +12,8 @@ header{
     align-items: start;
     column-gap: 6%;
     flex-wrap: wrap;
+    /* background-color: black; */
+    /* color: white; */
 }
 .home{
     flex-basis: 5%;
@@ -88,6 +90,9 @@ content{
 
     .product-list{
         flex-direction: column;
+        border: 1px solid black;
+    }
+    .product_container{
         border: 1px solid black;
     }
     
