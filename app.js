@@ -57,10 +57,18 @@ fetch('https://fakestoreapi.com/products/')
             product_li.setAttribute('class', `${product.category}-li`);
             product_li.setAttribute('id', `${product.id}`);
             // product_li.textContent = `${product.title}`;
+            product_li.setAttribute('data-price', `${product.price}`);
+            product_li.setAttribute('data-title', `${product.title}`);
+            product_li.setAttribute('data-description', `${product.description}`);
+            product_li.setAttribute('data-rating-rate', `${product.rating.rate}`);
+            product_li.setAttribute('data-rating-count', `${product.rating.count}`);
+            product_li.setAttribute('data-category', `${product.category}`);
+            product_li.setAttribute('data-image', `${product.image}`);
+            
             product_li.style.width = '23%';
             product_li.style.height = '18%';
             // product_li.style.border = '1px solid black';
-            product
+            // product
             product_li.style.backgroundColor = 'white';
             product_li.style.borderRadius = '15px';
             product_li.style.listStyleType = 'none';  
@@ -68,6 +76,18 @@ fetch('https://fakestoreapi.com/products/')
             // product_li.style.minHeight = '200px';
             product_li.style.alignItems = 'center';
             product_li.style.justifyContent = 'center';
+
+            const a = document.createElement('a');
+            a.style.width = '100%';
+            a.style.height = '100%';
+            a.style.color = 'black';
+            a.style.display = 'flex';
+            a.style.alignItems = 'center';
+            a.style.justifyContent = 'center';
+            a.href = '#';
+
+            a.style.textDecoration = 'none';
+
             const product_li_items = document.createElement('div');
             product_li_items.style.height = '90%';
             product_li_items.style.width = '90%';
@@ -92,6 +112,8 @@ fetch('https://fakestoreapi.com/products/')
             title.style.height = '15%';
             title.textContent = `${product.title}`;
             title.style.fontSize = '18px';
+            // title.style.textDecoration = 'none';
+
             // title.style.border = '1px solid black';
             title.style.textAlign = 'center';
             const pr_container = document.createElement('div');
@@ -110,6 +132,7 @@ fetch('https://fakestoreapi.com/products/')
             price.style.height = '100%';
             price.style.fontSize = '25px';
             price.style.textAlign = 'center';
+            // price.style.textDecoration = 'none';
             // const rating = document.createElement('div');
             // rating.textContent = `${product.rating}`;
             // rating.style.width = '30%';
@@ -122,31 +145,23 @@ fetch('https://fakestoreapi.com/products/')
             product_li_items.append(title);
             // product_li_items.append(desc);
 
-            product_li.append(product_li_items);
+            a.append(product_li_items);
+            product_li.append(a);
             product_list.append(product_li);
-        }         
+        }  
+
         content_container.append(product_list);
     })
 const categories_ul = document.querySelector('.category-container');
 // console.log(categories_ul);
 function displayproducts(e){
-    // console.log(e.target);
-    // console.log(e.target.id);
     const product_list = document.querySelector('.product-list');
     const content = document.querySelector('content');
     content.style.height = '150vh';
     // console.log(content_list);
     for(const product of product_list.children){
-        // console.log(product.getAttribute('class'));
-        // console.log(e.target);
-        // console.log(product);
         product.style.display = 'flex';
         const pr_class = product.getAttribute('class');
-        // console.log(pr_class);
-        // console.log(e.target.id);
-        // console.log()
-        // console.log(e.target.id);
-        // console.log(pr_class.slice(0,e.target.id.length));
         if(pr_class.slice(0,e.target.id.length) != e.target.id){
             product.style.display = 'none';
         }
@@ -168,6 +183,7 @@ function gohome(e){
     const content = document.querySelector('content');
     content.style.height = '300vh';
     const product_list = document.querySelector('.product-list');
+    console.log(product_list);
     product_list.style.justifyContent = 'space-evenly';
     product_list.style.alignItems = 'space-evenly';
     for(const product of product_list.children){
@@ -176,3 +192,185 @@ function gohome(e){
     }
 }
 home.addEventListener('click', gohome);
+
+
+const cc = document.querySelector('.content-container');
+// console.log(plist);
+function display_product(e){
+    const element = e.target.parentElement.parentElement.parentElement.parentElement;
+    const title = element.getAttribute('data-title');
+    const price = element.getAttribute('data-price');
+    const description = element.getAttribute('data-description');
+    const rating_rate = element.getAttribute('data-rating-rate');
+    const rating_count = element.getAttribute('data-rating-count');
+    const category = element.getAttribute('data-category');
+    const imagesrc = element.getAttribute('data-image');
+    const content = document.querySelector('content');
+    content.style.height = '100vh';
+    const plist = e.target.parentElement.parentElement.parentElement.parentElement.parentElement;
+    // for(const product of plist){
+    //     product.style.display = 'none';
+    // }
+    // console.log(plist);
+    plist.style.display = 'none';
+    // cc.style.display = flex;
+    cc.style.justifyContent = 'center';
+    cc.style.alignItems = 'center';
+    // cc.style.border = '1px solid black';
+    const product_container = document.createElement('div');
+    product_container.style.width = '70%';
+    product_container.style.height = '95%';
+    product_container.style.display = 'flex';
+    product_container.style.flexDirection = 'column';
+    product_container.style.backgroundColor = 'white';
+    product_container.style.borderRadius = '20px';
+    // product_container.style.border = 
+    product_container.style.justifyContent = 'space-between';
+    product_container.style.alignItems = 'space-between';
+    // product_container.style.border = '1px solid black';
+    console.log(product_container);
+    // const plist = document.querySelector('.product-list');
+
+    const i_container = document.createElement('div');
+    i_container.style.width = '100%';
+    i_container.style.height = '55%';
+    i_container.style.display = 'flex';
+    // i_container.style.border = '1px solid black';
+    // i_container.style.overflow = 'hidden';
+    // img_container.style.alignSelf = 'start';
+
+    const img_container = document.createElement('div');
+    img_container.style.width = '90%';
+    img_container.style.height = '100%';
+    img_container.style.display = 'flex';
+    // img_container.style.border = '1px solid black';
+    img_container.style.overflow = 'hidden';
+    img_container.style.alignSelf = 'start';
+    img_container.style.marginLeft = '4%';
+    // img_container.style.backgroundColor = 'white';
+
+    const img = document.createElement('img');
+    img.src = imagesrc;
+    img.style.width = '100%';
+    img.style.height = '100%';
+    img.style.objectFit = 'contain';
+
+    img_container.append(img);
+    console.log(e.target.parentElement.parentElement.parentElement.parentElement);
+
+    const rating_container = document.createElement('div');
+    rating_container.style.width = '5%';
+    rating_container.style.height = '100%';
+    rating_container.style.display = 'flex';
+    // rating_container.style.border = '1px solid black';
+    rating_container.style.justifyContent = 'start';
+    rating_container.style.flexDirection = 'column';
+
+
+    const rate_container = document.createElement('div');
+    rate_container.style.width = '100%';
+    rate_container.style.height = '10%';
+    rate_container.style.display = 'flex';
+    // rate_container.style.border = '1px solid black'; 
+    rate_container.textContent = rating_rate +'*';
+    rate_container.style.fontSize = '30px';
+
+    rating_container.style.marginLeft = '-70px';
+    rating_container.style.marginTop = '10px';
+
+
+    rating_container.append(rate_container);
+
+    const count_container = document.createElement('div');
+    count_container.style.width = '400%';
+    count_container.style.height = '10%';
+    count_container.style.display = 'flex';
+    // count_container.style.border = '1px solid black'; 
+    count_container.textContent = rating_count + ' ratings';
+    count_container.style.fontSize = '30px';
+
+
+    rating_container.append(count_container);
+
+    i_container.append(img_container);
+    i_container.append(rating_container);
+
+    product_container.append(i_container);
+
+    const details_container = document.createElement('div');
+    details_container.style.width = '100%';
+    details_container.style.height = '40%';
+    details_container.style.display = 'flex';
+    // details_container.style.border = '1px solid black';
+    details_container.style.flexDirection = 'column';
+    details_container.style.justifyContent = 'space-between';
+    details_container.style.alignItems = 'center';
+    // details_container.style.backgroundColor = 'white';
+
+
+    const pr_container = document.createElement('div');
+    pr_container.style.width = '60%';
+    pr_container.style.height = '10%';
+    pr_container.style.display = 'flex';
+    // pr_container.style.border = '1px solid black';
+    pr_container.style.justifyContent = 'center';
+    // pr_container.style.marginTop = '-40px';
+
+    const price_container = document.createElement('div');
+    price_container.style.width = '20%';
+    price_container.style.height = '100%';
+    price_container.style.display = 'flex';
+    // price_container.style.border = '1px solid black';
+    price_container.textContent = '$ ' + price;
+    price_container.style.fontSize = '40px';
+    // price_container.style.marginLeft = '-30px';
+    pr_container.append(price_container);
+
+    
+
+
+    details_container.append(pr_container);
+
+    const details = document.createElement('div');
+    details.style.width = '95%';
+    details.style.height = '80%';
+    details.style.display = 'flex';
+    // details.style.border = '1px solid black';
+    details.style.flexDirection = 'column';
+    details.style.justifyContent = 'space-evenly';
+
+    const title_container = document.createElement('div');
+    title_container.style.width = '100%';
+    title_container.style.height = '20%';
+    // title_container.style.display = 'flex';
+    // title_container.style.border = '1px solid black';
+    // title_container.style.flexDirection = 'column';
+    // title_container.style.marginLeft = '-20px';
+    title_container.style.fontSize = '25px';
+    
+    title_container.textContent = title;
+    title_container.style.textAlign = 'center';
+
+    details.append(title_container);
+
+    const description_container = document.createElement('div');
+    description_container.style.width = '100%';
+    description_container.style.height = '60%';
+    description_container.style.display = 'flex';
+    // description_container.style.border = '1px solid black';
+    // title_container.style.flexDirection = 'column';
+    description_container.style.fontSize = '22px';
+    description_container.textContent = description;
+
+    details.append(description_container);
+
+    details_container.append(details);
+
+    product_container.append(details_container);
+
+    cc.append(product_container);
+
+
+    // console.log(plist);
+}
+cc.addEventListener('click', display_product);
