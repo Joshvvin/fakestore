@@ -25,6 +25,7 @@ fetch('https://fakestoreapi.com/products/categories')
             ul.append(a);
         }
     })
+    .catch(console.error);  
 fetch('https://fakestoreapi.com/products/')
     .then((res)=>{
         return res.json();
@@ -135,7 +136,7 @@ fetch('https://fakestoreapi.com/products/')
 
             const dollar = document.createElement('div');
             dollar.textContent = '$';
-            dollar.style.width = '28%';
+            dollar.style.width = '33%';
             dollar.style.height = '70%';
             dollar.style.fontSize = '20px';
             dollar.style.textAlign = 'end';
@@ -170,6 +171,7 @@ fetch('https://fakestoreapi.com/products/')
 
         content_container.append(product_list);
     })
+    .catch(console.error);
 const categories_ul = document.querySelector('.category-container');
 // console.log(categories_ul);
 function displayproducts(e){
@@ -265,7 +267,7 @@ function display_product(e){
     // else if(e.target.parentElement.parentElement.parentElement.parentElement.getAttribute('class').slice(-3) == '-li'){
     //     plist = e.target.parentElement.parentElement.parentElement.parentElement;
     // }
-    console.log(e.target, e.target.parentElement, e.target.parentElement.parentElement, e.target.parentElement.parentElement.parentElement, e.target.parentElement.parentElement.parentElement.parentElement, e.target.parentElement.parentElement.parentElement.parentElement.parentElement);
+    // console.log(e.target, e.target.parentElement, e.target.parentElement.parentElement, e.target.parentElement.parentElement.parentElement, e.target.parentElement.parentElement.parentElement.parentElement, e.target.parentElement.parentElement.parentElement.parentElement.parentElement);
     plist.style.display = 'none';
     // cc.style.display = flex;
     cc.style.justifyContent = 'center';
@@ -302,13 +304,15 @@ function display_product(e){
     img_container.style.alignSelf = 'start';
     img_container.style.marginLeft = '4%';
     // img_container.style.backgroundColor = 'white';
+    img_container.style.justifyContent = 'center';
+    img_container.style.alignItems = 'end';
 
     const img = document.createElement('img');
     img.src = imagesrc;
-    img.style.width = '100%';
-    img.style.height = '100%';
+    img.style.width = '90%';
+    img.style.height = '90%';
     img.style.objectFit = 'contain';
-
+    // img.style.border = '1px solid black';
     img_container.append(img);
     // console.log(e.target.parentElement.parentElement.parentElement.parentElement);
 
@@ -355,7 +359,7 @@ function display_product(e){
     details_container.style.width = '100%';
     details_container.style.height = '40%';
     details_container.style.display = 'flex';
-    details_container.style.border = '1px solid black';
+    // details_container.style.border = '1px solid black';
     details_container.style.flexDirection = 'column';
     details_container.style.justifyContent = 'space-between';
     details_container.style.alignItems = 'center';
@@ -363,24 +367,31 @@ function display_product(e){
 
 
     const pr_container = document.createElement('div');
-    pr_container.style.width = '60%';
+    pr_container.style.width = '20%';
     pr_container.style.height = '10%';
     pr_container.style.display = 'flex';
     // pr_container.style.border = '1px solid black';
     pr_container.style.justifyContent = 'center';
-    // pr_container.style.marginTop = '-40px';
-
+    pr_container.style.marginLeft = '-50px';
+    pr_container.style.columnGap = '10px';
+    const dollar = document.createElement('div');
+    dollar.textContent = '$';
+    dollar.style.width = '20%';
+    dollar.style.height = '60%';
+    dollar.style.fontSize = '20px';
+    dollar.style.textAlign = 'end';
+    dollar.style.alignSelf = 'end';
+    // dollar.style.border = '1px solid black';
     const price_container = document.createElement('div');
-    price_container.style.width = '20%';
+    price_container.style.width = '30%';
     price_container.style.height = '100%';
     price_container.style.display = 'flex';
     // price_container.style.border = '1px solid black';
-    price_container.textContent = '$ ' + price;
+    price_container.textContent = price;
     price_container.style.fontSize = '40px';
     // price_container.style.marginLeft = '-30px';
+    pr_container.append(dollar);
     pr_container.append(price_container);
-
-    
 
 
     details_container.append(pr_container);
