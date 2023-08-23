@@ -4,16 +4,23 @@ body{
 header{
     display:flex;
     height: 80%;
-    height: 10vh;
+    height: 15vh;
     margin-top: 20px;
-    justify-content: start;
+    justify-content: center;
     /* border: 1px solid black; */
     flex-direction: row;
     align-items: start;
-    column-gap: 6%;
     flex-wrap: wrap;
     /* background-color: black; */
     /* color: white; */
+}
+.header-first{
+    /* border: 1px solid black; */
+    column-gap: 6%;
+    display: flex;
+    width: 100%;
+    height: 40%;
+    justify-content: space-between;
 }
 .home{
     flex-basis: 5%;
@@ -24,6 +31,21 @@ header{
     justify-content: center;
     align-items: center;
 }
+.search{
+    height: 100%;
+    width: 30%;
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search_item{
+    height: 70%;
+    width: 50%;
+    border: 1px solid black;
+    font-size: 18px;
+    /* text-align: center; */
+}
 .start{
     text-decoration: none;
     color: black;
@@ -32,16 +54,16 @@ header{
 .category-container{
     /* border: 1px solid black; */
     display: flex;
-    width: 70%;
-    height: 80%;
-    justify-content: center;
-    /* align-items: end; */
-    column-gap: 80px;
+    width: 80%;
+    height: 40%;
+    justify-content: space-between;
+    align-items: center;
+    /* column-gap: 80px; */
 }
 .category{
     margin-left: 0;
-    /* flex-basis: 25%; */
-    height: 100%;
+    flex-basis: 20%;
+    height: 120%;
     text-decoration: none;
     list-style-type: none;
     font-size: 20px;
@@ -64,6 +86,25 @@ content{
     justify-content: 'center';
     align-items: 'center';
     /* border: 1px solid black; */
+}
+.product:hover{
+    border: 1px solid black;
+    height: 23%;
+    width: 28%;
+    box-shadow: 1px 1px 10px 1px;
+}
+.category{
+    /* border: 1px solid black; */
+    border-radius: 15px;
+    width: 60%;
+    height: 60%;
+    /* color: blue; */
+    color: black;
+}
+.category:hover{
+    background-color: black;
+    border: 1px solid black;
+    color: white;
 }
 @media(max-width: 600px){
     header{

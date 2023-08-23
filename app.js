@@ -10,8 +10,8 @@ fetch('https://fakestoreapi.com/products/categories')
             const a = document.createElement('a');
             a.setAttribute('class', 'category');
             // a.style.border = '1px solid black';
-            a.setAttribute('id', `${category}`);
-            a.style.width = '23%';
+            a.setAttribute('id', `${category.split(' ').join('')}`);
+            // a.style.width = '23%';
             a.style.display = 'flex';
             a.style.justifyContent = 'center';
             a.style.alignItems = 'center';
@@ -20,8 +20,8 @@ fetch('https://fakestoreapi.com/products/categories')
             a.textContent = `${category}`;
             a.style.textTransform = 'Uppercase';
             a.style.textAlign = 'center';
-            a.style.color = 'black';
-            a.style.height = '100%';
+            // a.style.color = 'black';
+            // a.style.height = '80%';
             ul.append(a);
         }
     })
@@ -55,7 +55,7 @@ fetch('https://fakestoreapi.com/products/')
         // product_list.style.justifyContent = 'space-between';
         for(const product of products){        
             const product_li = document.createElement('li');
-            product_li.setAttribute('class', `${product.category}-li`);
+            product_li.setAttribute('class', `product ${product.category.split(' ').join('')}-li`);
             product_li.setAttribute('id', `${product.id}`);
             // product_li.textContent = `${product.title}`;
             product_li.setAttribute('data-price', `${product.price}`);
@@ -189,7 +189,8 @@ function displayproducts(e){
     // }
     for(const product of product_list.children){
         product.style.display = 'flex';
-        const pr_class = product.getAttribute('class');
+        const pr_class = product.classList[1];
+        // console.log(pr_class, e.target.id);
         if(pr_class.slice(0,e.target.id.length) != e.target.id){
             product.style.display = 'none';
         }
@@ -214,7 +215,7 @@ function gohome(e){
     // console.log(product_list);
     // console.log(e.target.parentElement.parentElement.nextSiblingElement);
     // console.log(content.children[0]);
-    console.log(content.children);
+    // console.log(content.children);
     // if(content.children.length == 2){
         const rmelement = content.children[0].lastElementChild;
         // console.log(rmelement);
@@ -440,3 +441,36 @@ function display_product(e){
     // console.log(plist);
 }
 cc.addEventListener('click', display_product);
+
+function search_item(e){
+    console.log(e.key);
+    const product_list = document.querySelector('.product-list');
+    // console.log(product_list);
+    for(const product of product_list.children){
+        // console.log(product);
+        if(e.key != 'Backspace'){
+            if(product.style.display != 'none'){
+                // console.log(product);
+                // console.log(product.getAttribute('data-title').toLowerCase().includes(e.target.value));
+                if(product.getAttribute('data-title').toLowerCase().includes(e.target.value)){
+                    product.style.display = 'flex';
+                }
+                else{
+                    product.style.display  = 'none';
+                }
+            }
+        }
+        else{
+            if(product.getAttribute('data-title').toLowerCase().includes(e.target.value)){
+                product.style.display = 'flex';
+            }
+            else{
+                product.style.display  = 'none';
+            }
+        }
+    }
+}
+const search_item_to_display = document.querySelector('.search_item');
+search_item_to_display.addEventListener('keyup', search_item);
+// search_item_to_display.addEventListener('keydown', search_item);
+
