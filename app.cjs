@@ -141,6 +141,14 @@ document.addEventListener('DOMContentLoaded', function loaded(e){
                 rmelement.remove();
             }
         }
+        // console.log(content_list);
+        // if(content.children.length == 2){
+        //     const rmelement = content.children[0].lastElementChild;
+        //     // console.log(rmelement);
+        //     if(rmelement.getAttribute('class') == 'product_container'){
+        //         rmelement.remove();
+        //     }
+        // }
         for(const product of product_list.children){
             product.style.display = 'flex';
             const pr_class = product.classList[1];
@@ -165,14 +173,27 @@ document.addEventListener('DOMContentLoaded', function loaded(e){
     function gohome(e){
         const content_container = document.querySelector('.content-container');
         const content = document.querySelector('.content');
+
         content.style.height = '300vh';
         const product_list = document.querySelector('.product-list');
+        // console.log(product_list);
+        // console.log(e.target.parentElement.parentElement.nextSiblingElement);
+        // console.log(content.children[0]);
+        // console.log(content_container.children);
         if(content_container.children.length == 2){
             const rmelement = content_container.lastElementChild;
             // console.log(rmelement);
             if(rmelement.getAttribute('class') == 'product_container'){
                 rmelement.remove();
             }
+        }
+        // content.childrend[0].firstElementChild.remove();
+        product_list.style.display = 'flex';
+        product_list.style.justifyContent = 'space-evenly';
+        product_list.style.alignItems = 'space-evenly';
+        for(const product of product_list.children){
+            product.style.display = 'flex';
+            product.style.height = '18%';
         }
     }
     home.addEventListener('click', gohome);
@@ -191,40 +212,105 @@ document.addEventListener('DOMContentLoaded', function loaded(e){
         const content = document.querySelector('.content');
         content.style.height = '100vh';
         let plist = e.target.parentElement.parentElement.parentElement.parentElement.parentElement;
-        
+        // for(const product of plist){
+        //     product.style.display = 'none';
+        // }
+        // console.log(e.target.parentElement.parentElement.parentElement.parentElement.parentElement);
+        // if(e.target.getAttribute('class').slice(-3) == '-li'){
+        //     plist = e.target;
+        // }
+        // else if(e.target.parentElement.getAttribute('class').slice(-3) == '-li'){
+        //     plist = e.target.parentElement;
+        // }
+        // else if(e.target.parentElement.parentElement.getAttribute('class').slice(-3) == '-li'){
+        //     plist = e.target.parentElement.parentElement;
+        // }
+        // else if(e.target.parentElement.parentElement.parentElement.getAttribute('class').slice(-3) == '-li'){
+        //     plist = e.target.parentElement.parentElement.parentElement;
+        // }
+        // else if(e.target.parentElement.parentElement.parentElement.parentElement.getAttribute('class').slice(-3) == '-li'){
+        //     plist = e.target.parentElement.parentElement.parentElement.parentElement;
+        // }
+        // console.log(e.target, e.target.parentElement, e.target.parentElement.parentElement, e.target.parentElement.parentElement.parentElement, e.target.parentElement.parentElement.parentElement.parentElement, e.target.parentElement.parentElement.parentElement.parentElement.parentElement);
         plist.style.display = 'none';
         // cc.style.display = flex;
         cc.style.justifyContent = 'center';
         cc.style.alignItems = 'center';
         // cc.style.border = '1px solid black';
         const product_container = document.createElement('div');
+        product_container.style.width = '60%';
+        product_container.style.height = '95%';
+        product_container.style.display = 'flex';
+        product_container.style.flexDirection = 'column';
+        product_container.style.backgroundColor = 'white';
+        product_container.style.borderRadius = '20px';
         product_container.setAttribute('class', 'product_container'); 
+        product_container.style.justifyContent = 'space-between';
+        product_container.style.alignItems = 'space-between';
+        // product_container.style.border = '1px solid black';
+        // console.log(product_container);
+        // const plist = document.querySelector('.product-list');
 
         const i_container = document.createElement('div');
-        i_container.setAttribute('class', 'i_container');
-        
+        i_container.style.width = '100%';
+        i_container.style.height = '55%';
+        i_container.style.display = 'flex';
+        // i_container.style.border = '1px solid black';
+        // i_container.style.overflow = 'hidden';
+        // img_container.style.alignSelf = 'start';
+
         const img_container = document.createElement('div');
-        img_container.setAttribute('class', 'img_container');
-        
+        img_container.style.width = '90%';
+        img_container.style.height = '100%';
+        img_container.style.display = 'flex';
+        // img_container.style.border = '1px solid black';
+        img_container.style.overflow = 'hidden';
+        img_container.style.alignSelf = 'start';
+        img_container.style.marginLeft = '4%';
+        // img_container.style.backgroundColor = 'white';
+        img_container.style.justifyContent = 'center';
+        img_container.style.alignItems = 'end';
 
         const img = document.createElement('img');
         img.src = imagesrc;
-        img.setAttribute('class', 'disp_img');
-        
+        img.style.width = '90%';
+        img.style.height = '90%';
+        img.style.objectFit = 'contain';
+        // img.style.border = '1px solid black';
+        img.style.marginLeft = '50px';
         img_container.append(img);
         // console.log(e.target.parentElement.parentElement.parentElement.parentElement);
 
         const rating_container = document.createElement('div');
-        rating_container.setAttribute('class', 'rating_container');
+        rating_container.style.width = '5%';
+        rating_container.style.height = '100%';
+        rating_container.style.display = 'flex';
+        // rating_container.style.border = '1px solid black';
+        rating_container.style.justifyContent = 'start';
+        rating_container.style.flexDirection = 'column';
+
 
         const rate_container = document.createElement('div');
-        rate_container.setAttribute('class', 'rate_container');
-        rate_container.textContent = rating_rate +'*'; 
+        rate_container.style.width = '100%';
+        rate_container.style.height = '10%';
+        rate_container.style.display = 'flex';
+        // rate_container.style.border = '1px solid black'; 
+        rate_container.textContent = rating_rate +'*';
+        rate_container.style.fontSize = '30px';
+
+        rating_container.style.marginLeft = '-80px';
+        rating_container.style.marginTop = '10px';
+
+
         rating_container.append(rate_container);
 
         const count_container = document.createElement('div');
-        count_container.setAttribute('class', 'count_container');
-        count_container.textContent = rating_count + ' ratings';     
+        count_container.style.width = '400%';
+        count_container.style.height = '10%';
+        count_container.style.display = 'flex';
+        // count_container.style.border = '1px solid black'; 
+        count_container.textContent = rating_count + ' ratings';
+        count_container.style.fontSize = '30px';
 
 
         rating_container.append(count_container);
@@ -235,19 +321,40 @@ document.addEventListener('DOMContentLoaded', function loaded(e){
         product_container.append(i_container);
 
         const details_container = document.createElement('div');
-        details_container.setAttribute('class', 'details_container');
+        details_container.style.width = '100%';
+        details_container.style.height = '40%';
+        details_container.style.display = 'flex';
+        // details_container.style.border = '1px solid black';
+        details_container.style.flexDirection = 'column';
+        details_container.style.justifyContent = 'space-between';
+        details_container.style.alignItems = 'center';
+        // details_container.style.backgroundColor = 'white';
+
 
         const pr_container = document.createElement('div');
-        pr_container.setAttribute('class', 'price_rating_container');
-
+        pr_container.style.width = '20%';
+        pr_container.style.height = '10%';
+        pr_container.style.display = 'flex';
+        // pr_container.style.border = '1px solid black';
+        pr_container.style.justifyContent = 'center';
+        pr_container.style.marginLeft = '-50px';
+        pr_container.style.columnGap = '10px';
         const dollar = document.createElement('div');
-        dollar.setAttribute('class', 'disp_dollar');
         dollar.textContent = '$';
-       
+        dollar.style.width = '20%';
+        dollar.style.height = '60%';
+        dollar.style.fontSize = '20px';
+        dollar.style.textAlign = 'end';
+        dollar.style.alignSelf = 'end';
+        // dollar.style.border = '1px solid black';
         const price_container = document.createElement('div');
-        price_container.setAttribute('class', 'price_container');
+        price_container.style.width = '30%';
+        price_container.style.height = '100%';
+        price_container.style.display = 'flex';
+        // price_container.style.border = '1px solid black';
         price_container.textContent = price;
-       
+        price_container.style.fontSize = '40px';
+        // price_container.style.marginLeft = '-30px';
         pr_container.append(dollar);
         pr_container.append(price_container);
 
@@ -255,8 +362,6 @@ document.addEventListener('DOMContentLoaded', function loaded(e){
         details_container.append(pr_container);
 
         const details = document.createElement('div');
-        details.setAttribute('class', 'details');
-
         details.style.width = '95%';
         details.style.height = '80%';
         details.style.display = 'flex';
