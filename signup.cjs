@@ -9,8 +9,10 @@ const password_confirm = document.getElementById('password_confirm_input');
 // let login_credentials = {};
 function create(e){
     // console.log(username.value, password.value);
+    const message = document.querySelector('.message');
+    // console.log(message);
     if(username.value.length == 0 || password.value.length == 0 || password_confirm.value.length == 0 || email.value.length == 0){
-        alert('Please Enter all the details');
+        console.log('Please Enter all the details');
     }
     else{
         // const user_details = {
@@ -22,16 +24,16 @@ function create(e){
         // }
         // console.log(password.value, password_confirm.value);
         if(password.value != password_confirm.value){
-            alert('Passwords do not match!');
+            console.log('Passwords do not match!');
         }
         else{
             if(localStorage.getItem('username') == username.value){
-                alert('Username already taken!');
+                console.log('Username already taken!');
             }
             else{
                 localStorage.setItem('username', username.value );
                 localStorage.setItem('password', password.value);
-                alert('Account Created Successfully');      
+                console.log('Account Created Successfully');      
                 window.location.replace('./index.html');
             }
         }

@@ -12,6 +12,9 @@ content{
     align-items: center;
     background-color: rgb(247, 242, 242);
 }
+.message{
+    display: none;
+}
 .content-container{
     height: 90%;
     flex-basis: 90%;
@@ -115,3 +118,35 @@ content{
 /* .username_container{
 
 } */
+@media(min-width: 350px) and (max-width: 600px){
+    .signin_container{
+        flex-basis: 80%;
+    }
+    .new_user{
+        width: 100%;
+    }
+}
+@media(min-width: 601px) and (max-width: 700px){
+    .signin_container{
+        flex-basis: 70%;
+    }
+    .new_user{
+        width: 90%;
+    }
+}
+@media(min-width: 701px) and (max-width: 800px){
+    .signin_container{
+        flex-basis: 60%;
+    }
+    .new_user{
+        width: 80%;
+    }
+}
+@media(min-width: 801px) and (max-width: 1099px){
+    .signin_container{
+        flex-basis: 50%;
+    }
+    .new_user{
+        width: 70%;
+    }
+}
