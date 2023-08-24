@@ -25,10 +25,15 @@ function create(e){
             alert('Passwords do not match!');
         }
         else{
-            localStorage.setItem('username', username.value );
-            localStorage.setItem('password', password.value);
-            alert('Account Created Successfully');      
-            window.location.replace('./index.html');
+            if(localStorage.getItem('username') == username.value){
+                alert('Username already taken!');
+            }
+            else{
+                localStorage.setItem('username', username.value );
+                localStorage.setItem('password', password.value);
+                alert('Account Created Successfully');      
+                window.location.replace('./index.html');
+            }
         }
     }
 }

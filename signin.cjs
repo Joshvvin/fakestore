@@ -7,7 +7,6 @@ function verify(e){
         alert('Please Enter Username and Password');
     }
     else{
-
         if(username.value == localStorage.getItem('username') && password.value == localStorage.getItem('password')){
             alert('signin successful');
             window.location.replace('./index.html');
