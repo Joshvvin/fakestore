@@ -5,8 +5,8 @@ content{
     flex-basis: 100%;
     justify-content: center;
     align-items: center;
-    background-color: rgb(210, 214, 231);
-
+    background-color: rgb(247, 242, 242);
+    /* background-color: white;; */
 }
 .content-container{
     height: 90%;
@@ -21,7 +21,7 @@ content{
 .signup_container{
     height: 80%;
     flex-basis: 30%;
-    border: 1px  solid black;
+    border: 1px  solid grey;
     border-radius: 15px;
     background-color: white;
     /* box-shadow: 1px 1px 100px 1px; */
@@ -36,10 +36,11 @@ content{
     flex-basis: 5%;
     width: 80%;
     /* border: 1px solid black;     */
-    margin-top: -50px;
+    /* margin-top: -50px; */
     font-size: 22px;
     text-transform: uppercase;
     text-align: center;
+    margin-bottom: 20px;
 }
 .signup_items{
     /* margin-top: 30px; */
@@ -59,6 +60,7 @@ content{
     /* border: 1px solid black; */
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
 }
 .text{
     font-weight: bold;
@@ -76,7 +78,8 @@ content{
     font-size: 15px;
     border-radius: 8px;
     flex-basis: 100%;
-    background-color: rgb(210, 214, 231);
+    color: white;
+    background-color: black;
 }
 .already_user{
     flex-basis: 10%;

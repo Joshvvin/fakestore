@@ -10,7 +10,7 @@ content{
     flex-basis: 100%;
     justify-content: center;
     align-items: center;
-    background-color: rgb(210, 214, 231);
+    background-color: rgb(247, 242, 242);
 }
 .content-container{
     height: 90%;
@@ -26,7 +26,7 @@ content{
 .signin_container{
     height: 60%;
     flex-basis: 25%;
-    border: 1px  solid black;
+    border: 1px  solid grey;
     border-radius: 15px;
     background-color: white;
     /* box-shadow: 1px 1px 100px 1px; */
@@ -86,7 +86,8 @@ content{
     font-size: 15px;
     border-radius: 8px;
     flex-basis: 100%;
-    background-color: rgb(210, 214, 231);
+    color: white;
+    background-color: black;
 }
 .new_user{
     flex-basis: 10%;

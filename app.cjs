@@ -15,7 +15,7 @@
 //     })
 
 document.addEventListener('DOMContentLoaded', function loaded(e){
-    console.log('domcontent loaded');
+    // console.log('domcontent loaded');
     fetch('https://fakestoreapi.com/products/categories')
         .then((res)=>{
             // console.log(res.ok);
@@ -25,41 +25,43 @@ document.addEventListener('DOMContentLoaded', function loaded(e){
             return res.json();
         })
         .then((data)=>{
-            // const content = document.querySelector('.content-container');
-            //     content.style.display = 'flex';
-            //     const loader = document.querySelector('.loader');
-            //     loader.style.display = 'none';
-            const content_container = document.querySelector('.content-container');
-            const ul = document.querySelector('.category-container');       
-            for(const category of data){
-                const a = document.createElement('a');
-                a.setAttribute('class', 'category');
-                // a.style.border = '1px solid black';
-                a.setAttribute('id', `${category.split(' ').join('')}`);
-                // a.style.width = '23%';
-                a.style.display = 'flex';
-                a.style.justifyContent = 'center';
-                a.style.alignItems = 'center';
-                // a.style.border = '1px solid black';
-                a.href = '#';
-                a.textContent = `${category}`;
-                a.style.textTransform = 'Uppercase';
-                a.style.textAlign = 'center';
-                // a.style.color = 'black';
-                // a.style.height = '80%';
-                ul.append(a);
-            }
+        // const content = document.querySelector('.content-container');
+        //     content.style.display = 'flex';
+        //     const loader = document.querySelector('.loader');
+        //     loader.style.display = 'none';
+        const content_container = document.querySelector('.content-container');
+        const ul = document.querySelector('.category-container');       
+        for(const category of data){
+            const a = document.createElement('a');
+            a.setAttribute('class', 'category');
+            // a.style.border = '1px solid black';
+            a.setAttribute('id', `${category.split(' ').join('')}`);
+            // a.style.width = '23%';
+            a.style.display = 'flex';
+            a.style.justifyContent = 'center';
+            a.style.alignItems = 'center';
+            // a.style.border = '1px solid black';
+            a.href = '#';
+            a.textContent = `${category}`;
+            a.style.textTransform = 'Uppercase';
+            a.style.textAlign = 'center';
+            // a.style.color = 'black';
+            // a.style.height = '80%';
+            ul.append(a);
+        }
         })
         .catch((e)=>{
-            const loader = document.querySelector('.loader');
-            loader.style.display = 'none';
-            const content_container = document.querySelector('.content-container');
-            content_container.textContent = 'Fetch has failed to load data';
+            if(e instanceof TypeError){
+                console.error('you are offline');
+            }
+            else{
+                console.error(e);
+            }
         });  
     fetch('https://fakestoreapi.com/products/')
         .then((res)=>{
             if(!res.ok){
-                throw new Error('fetch has failed to load data');
+                throw new Error('fetch has failed to load data')
             }
             return res.json();
         })
@@ -208,12 +210,7 @@ document.addEventListener('DOMContentLoaded', function loaded(e){
 
             content_container.append(product_list);
         })
-        .catch((e)=>{
-            const loader = document.querySelector('.loader');
-            loader.style.display = 'none';
-            const content_container = document.querySelector('.content-container');
-            content_container.textContent = 'Fetch has failed to load data';
-        });
+        .catch(console.error);
     const categories_ul = document.querySelector('.category-container');
     // console.log(categories_ul);
     function displayproducts(e){
@@ -544,10 +541,11 @@ document.addEventListener('DOMContentLoaded', function loaded(e){
     }
     const search_item_to_display = document.querySelector('.search_item');
     search_item_to_display.addEventListener('keyup', search_item);
-});
+})
+.catch(console.error);
 const content_container = document.querySelector('.content-container');
-// console.log('after document.domcontentloaded');
+// console.log(content_container);
 content_container.style.display = 'none';
 const loader = document.querySelector('.loader');
 // console.log(loader);
-loader.style.display = 'flex';
+loader.style.display = 'block';
