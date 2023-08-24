@@ -1,44 +1,66 @@
 
+// fetch('https://fakestoreapi.com/products/')
+//     .then((res)=>{
+//         console.log(res.ok);
+//         if(!res.ok){
+//             throw new Error('fetch has failed to load data');
+//         }
+//         return res.json();
+//     })
+//     .then((data)=>{
+//         console.log(data);
+//     })
+//     .catch((error)=>{
+//         console.error(error);
+//     })
 
-function loaded(e){
-    // const content = document.querySelector('.content-container');
-    //         content.style.display = 'flex';
-    //         const loader = document.querySelector('.loader');
-    //         loader.style.display = 'none';
-
+document.addEventListener('DOMContentLoaded', function loaded(e){
+    console.log('domcontent loaded');
     fetch('https://fakestoreapi.com/products/categories')
-    .then((res)=>{
-        return res.json();
-    })
-    .then((data)=>{
-        // const content = document.querySelector('.content-container');
-        //     content.style.display = 'flex';
-        //     const loader = document.querySelector('.loader');
-        //     loader.style.display = 'none';
-        const content_container = document.querySelector('.content-container');
-        const ul = document.querySelector('.category-container');       
-        for(const category of data){
-            const a = document.createElement('a');
-            a.setAttribute('class', 'category');
-            // a.style.border = '1px solid black';
-            a.setAttribute('id', `${category.split(' ').join('')}`);
-            // a.style.width = '23%';
-            a.style.display = 'flex';
-            a.style.justifyContent = 'center';
-            a.style.alignItems = 'center';
-            // a.style.border = '1px solid black';
-            a.href = '#';
-            a.textContent = `${category}`;
-            a.style.textTransform = 'Uppercase';
-            a.style.textAlign = 'center';
-            // a.style.color = 'black';
-            // a.style.height = '80%';
-            ul.append(a);
-        }
-    })
-    .catch(console.error);  
+        .then((res)=>{
+            // console.log(res.ok);
+            if(!res.ok){
+                throw new Error('fetch has failed to load data');
+            }
+            return res.json();
+        })
+        .then((data)=>{
+            // const content = document.querySelector('.content-container');
+            //     content.style.display = 'flex';
+            //     const loader = document.querySelector('.loader');
+            //     loader.style.display = 'none';
+            const content_container = document.querySelector('.content-container');
+            const ul = document.querySelector('.category-container');       
+            for(const category of data){
+                const a = document.createElement('a');
+                a.setAttribute('class', 'category');
+                // a.style.border = '1px solid black';
+                a.setAttribute('id', `${category.split(' ').join('')}`);
+                // a.style.width = '23%';
+                a.style.display = 'flex';
+                a.style.justifyContent = 'center';
+                a.style.alignItems = 'center';
+                // a.style.border = '1px solid black';
+                a.href = '#';
+                a.textContent = `${category}`;
+                a.style.textTransform = 'Uppercase';
+                a.style.textAlign = 'center';
+                // a.style.color = 'black';
+                // a.style.height = '80%';
+                ul.append(a);
+            }
+        })
+        .catch((e)=>{
+            const loader = document.querySelector('.loader');
+            loader.style.display = 'none';
+            const content_container = document.querySelector('.content-container');
+            content_container.textContent = 'Fetch has failed to load data';
+        });  
     fetch('https://fakestoreapi.com/products/')
         .then((res)=>{
+            if(!res.ok){
+                throw new Error('fetch has failed to load data');
+            }
             return res.json();
         })
         .then((products)=>{
@@ -186,7 +208,12 @@ function loaded(e){
 
             content_container.append(product_list);
         })
-        .catch(console.error);
+        .catch((e)=>{
+            const loader = document.querySelector('.loader');
+            loader.style.display = 'none';
+            const content_container = document.querySelector('.content-container');
+            content_container.textContent = 'Fetch has failed to load data';
+        });
     const categories_ul = document.querySelector('.category-container');
     // console.log(categories_ul);
     function displayproducts(e){
@@ -196,11 +223,11 @@ function loaded(e){
         content.style.height = '150vh';
         // console.log(content_list);
         // if(content.children.length == 2){
-            const rmelement = content.children[0].lastElementChild;
-            // console.log(rmelement);
-            if(rmelement.getAttribute('class') == 'product_container'){
-                rmelement.remove();
-            }
+        //     const rmelement = content.children[0].lastElementChild;
+        //     // console.log(rmelement);
+        //     if(rmelement.getAttribute('class') == 'product_container'){
+        //         rmelement.remove();
+        //     }
         // }
         for(const product of product_list.children){
             product.style.display = 'flex';
@@ -232,11 +259,11 @@ function loaded(e){
         // console.log(content.children[0]);
         // console.log(content.children);
         // if(content.children.length == 2){
-            const rmelement = content.children[0].lastElementChild;
+            // const rmelement = content.children[0].lastElementChild;
             // console.log(rmelement);
-            if(rmelement.getAttribute('class') == 'product_container'){
-                rmelement.remove();
-            }
+            // if(rmelement.getAttribute('class') == 'product_container'){
+            //     rmelement.remove();
+            // }
         // }
         // content.childrend[0].firstElementChild.remove();
         product_list.style.display = 'flex';
@@ -460,7 +487,7 @@ function loaded(e){
     function search_item(e){
         // console.log(e.key);
         const product_list = document.querySelector('.product-list');
-        console.log(product_list);
+        // console.log(product_list);
 
         let c = 0;
         for(const product of product_list.children){
@@ -486,63 +513,41 @@ function loaded(e){
                     product.style.display  = 'none';
                 }
             }
-            if(product.style.display != 'none'){
-                c++;
-            }
+            // if(product.style.display != 'none'){
+            //     c++;
+            // }
         }
         // console.log(c);
-        if(c == 0){
-            const no_show = document.createElement('div');
-            no_show.textContent = 'No products to show.';
-            no_show.setAttribute('class', 'no_show')
-            no_show.style.fontSize = '30px';
-            no_show.style.height = '50%';
-            no_show.style.width = '50%';
-            no_show.style.display = 'block';
-            // no_show.style.border = '1px solid black';
-            // no_show.
-            product_list.append(no_show);
-            // product_list. = 'No products to show';
-        }
-        else{
-            // const no_show = document.querySelector('.no_show');
-            // console.log(no_show);
-            // for(const product of product_list){
-            //     if(product.getAttribute('class') == 'no_show'){
-            //         product_list.removeChild(product);
-            //     }
-            // }
-        }        
+        // if(c == 0){
+        //     const no_show = document.createElement('div');
+        //     no_show.textContent = 'No products to show.';
+        //     no_show.setAttribute('class', 'no_show')
+        //     no_show.style.fontSize = '30px';
+        //     no_show.style.height = '50%';
+        //     no_show.style.width = '50%';
+        //     no_show.style.display = 'block';
+        //     // no_show.style.border = '1px solid black';
+        //     // no_show.
+        //     product_list.append(no_show);
+        //     // product_list. = 'No products to show';
+        // }
+        // else{
+        //     // const no_show = document.querySelector('.no_show');
+        //     // console.log(no_show);
+        //     // for(const product of product_list){
+        //     //     if(product.getAttribute('class') == 'no_show'){
+        //     //         product_list.removeChild(product);
+        //     //     }
+        //     // }
+        // }        
         
     }
     const search_item_to_display = document.querySelector('.search_item');
     search_item_to_display.addEventListener('keyup', search_item);
-}
-document.addEventListener('DOMContentLoaded', loaded);
+});
 const content_container = document.querySelector('.content-container');
-console.log(content_container);
+// console.log('after document.domcontentloaded');
 content_container.style.display = 'none';
 const loader = document.querySelector('.loader');
-console.log(loader);
-loader.style.display = 'block';
-// console.log('loading....');
-
-// search_item_to_display.addEventListener('keydown', search_item);
-// function loading(e){
-    
-// }
-// document.addEventListener('DOMContentLoaded', loading);
-
-// const signin = document.querySelector('.signin');
-// function gotosignin(){
-//     // console.log('sign in link clicked');
-//     window.location.replace('./signin.html');
-// }
-// signin.addEventListener('click', gotosignin);
-
-// const signup = document.querySelector('.signup');
-// function gotosignup(){
-//     // console.log('sign in link clicked');
-//     window.location.replace('./signup.html');
-// }
-// signin.addEventListener('click', gotosignup);
+// console.log(loader);
+loader.style.display = 'flex';

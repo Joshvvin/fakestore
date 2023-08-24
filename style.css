@@ -1,13 +1,24 @@
 body{
-    /* border: 1px solid black; */
+    border: 1px solid black;
+}
+content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
 }
 .loader {
     border: 16px solid #f3f3f3;
     border-top: 16px solid #3498db; 
-    margin-top: 100px;
+    flex-basis: 50%;
+    width: 30%;
+    /* margin-top: -1000px; */
+    margin: auto;
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    /* align-self: center; */
+    /* border: 1px solid black; */
+    width: 150px;
+    height: 150px;
     animation: spin 2s linear infinite;
   }
   

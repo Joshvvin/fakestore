@@ -6,11 +6,14 @@ function verify(e){
     if(username.value.length == 0 || password.value.length == 0){
         alert('Please Enter Username and Password');
     }
-    if(username.value == 'joshvvin' && password.value == 'thrissur'){
-        window.location.replace('./index.html');
-    }
     else{
-        alert('Incorrect username or password');
+        if(username.value == 'joshvvin' && password.value == 'thrissur'){
+            alert('signin successful');
+            window.location.replace('./index.html');
+        }
+        else{
+            alert('Incorrect username or password');
+        }
     }
 }
 signin.addEventListener('click', verify);
